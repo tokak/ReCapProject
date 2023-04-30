@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Core.Ultities;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -17,44 +19,44 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
 
-        public List<Car> GetAllByColorId(int id)
+        public IDataResult<List<Car>> GetAllByColorId(int id)
         {
-            return _carDal.GetAll(item=>item.ColorId==id);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(item => item.ColorId == id));
         }
 
-        public List<Car> GetAllByBrandId(int id)
+        public IDataResult<List<Car>> GetAllByBrandId(int id)
         {
-            return _carDal.GetAll(item => item.BrandId == id);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(item => item.BrandId == id));
         }
 
 
 
-        public List<Car> GetByUnitPrice(decimal min, decimal max)
+        public IDataResult<List<Car>> GetByUnitPrice(decimal min, decimal max)
         {
-            return _carDal.GetAll(item=>item.DailyPrice>min && item.DailyPrice<max);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(item => item.DailyPrice > min && item.DailyPrice < max));
         }
 
-        public bool CarAdded(Car car)
+        public IResult CarAdded(Car car)
         {
-            if (car.CarDescription.Length<2 || car.DailyPrice<=0)
+            if (car.CarDescription.Length < 2 || car.DailyPrice <= 0)
             {
-                return false;
+                return new ErrorResult();
             }
             else
             {
                 _carDal.Add(car);
-                return true;
+                return new SuccessResult();
             }
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return _carDal.GetCarDetails();
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
     }
 }
