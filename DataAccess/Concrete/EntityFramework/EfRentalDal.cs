@@ -21,7 +21,7 @@ namespace DataAccess.Concrete.EntityFramework
                              join c in context.Cars
                              on r.CarId equals c.Id
                              join u in context.Users
-                             on r.CustomerId equals u.Id
+                             on c.Id equals u.Id
                              select new CustomerCarRentailDetail
                              {
                                  CarName = c.CarDescription,
