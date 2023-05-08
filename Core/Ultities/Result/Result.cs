@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Ultities
+namespace Core.Ultities.Result
 {
     public class Result : IResult
     {
-        public Result(bool success,string message):this(success)
+        public Result(bool success, string message) : this(success)
         {
             Message = message;
             //Success= succes; altta kodu eşitliyoruz.

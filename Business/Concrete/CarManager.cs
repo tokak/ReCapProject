@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
-using Core.Ultities;
+using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspect.Autofac.Validation;
+using Core.Ultities.Result;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
@@ -40,18 +43,14 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(item => item.DailyPrice > min && item.DailyPrice < max));
         }
-
+        [ValidationAspect(typeof(CarValidation))]
         public IResult CarAdded(Car car)
         {
-            if (car.CarDescription.Length < 2 || car.DailyPrice <= 0)
-            {
-                return new ErrorResult();
-            }
-            else
-            {
-                _carDal.Add(car);
-                return new SuccessResult();
-            }
+
+
+            _carDal.Add(car);
+            return new SuccessResult(Message.CarAdded);
+
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()

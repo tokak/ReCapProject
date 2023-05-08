@@ -41,8 +41,13 @@ namespace WepAPI.Controllers
         [HttpPost("Add")]
         public IActionResult Add(Brand brand)
         {
-            _brandService.Add(brand);
-            return Ok($"{brand.BrandName} marka eklendi.");
+            var result =_brandService.Add(brand);
+            if (result.Success)
+            {
+                return Ok($"{brand.BrandName} marka eklendi.");
+                
+            }
+            return BadRequest(result);
         }
 
         [HttpPost("Delete")]

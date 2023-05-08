@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
-using Core.Ultities;
+using Core.Ultities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -19,12 +19,12 @@ namespace Business.Concrete
         {
             _brandDal = brandDal;
         }
-
+        
         public IResult Add(Brand brand)
         {
             if (brand.BrandName.Length<2)
             {
-                return new ErrorResult(Message.CarNameInValid);
+                return new ErrorResult(Message.CarNameInvalid);
             }
             _brandDal.Add(brand);
             return new SuccessResult(Message.CarAdded);

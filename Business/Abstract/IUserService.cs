@@ -1,4 +1,4 @@
-﻿using Core.Ultities;
+﻿using Core.Ultities.Result;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;

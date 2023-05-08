@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Ultities
+namespace Core.Ultities.Result
 {
     //Temel voidler için başlangıç
     public interface IResult

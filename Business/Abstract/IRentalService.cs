@@ -1,5 +1,4 @@
-﻿using Core.Entities;
-using Core.Ultities;
+﻿using Core.Ultities.Result;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;

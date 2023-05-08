@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Ultities
+namespace Business.Constants
 {
-    public interface IDataResult<T>:IResult
+    public class PathConstants
     {
-        T Data { get; }
+        public static string ImagesPath = "wwwroot\\Uploads\\Images\\";
     }
 }
