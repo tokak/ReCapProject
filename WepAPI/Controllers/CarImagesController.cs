@@ -13,7 +13,7 @@ namespace WepAPI.Controllers
         ICarImageService _carImageService;
 
 
-        public CarImagesController(ICarImageService carImageService)
+        public CarImagesController(ICarImageService carImageService)    
         {
             _carImageService = carImageService;
         }
